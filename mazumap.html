@@ -497,7 +497,7 @@ function renderTrail(){
 function openDetail(id){
   const t=findT(id);if(!t)return;
   const list=checkins.filter(c=>c.tid===id).sort((a,b)=>b.ts-a.ts);
-  openSheet(`<h2>${esc(t.name)}</h2><p class="sub">${esc(t.county)}${t.addr?' · '+esc(t.addr):''}</p>${t.intro?`<p style="line-height:1.7">${esc(t.intro)}</p>`:(t.note?`<p>${esc(t.note)}</p>`:'')}${(!t.intro&&!t.custom)?'<p class="sub">介紹暫缺(目前查不到可靠資料)。</p>':''}
+  openSheet(`<h2>${esc(t.name)}</h2><p class="sub">${esc(t.county)}${t.addr?' · '+esc(t.addr):''}</p>${t.intro?`<p style="line-height:1.7">${esc(t.intro)}</p><p class="sub">以上資料若有錯誤,歡迎指正。</p>`:(t.note?`<p>${esc(t.note)}</p>`:'')}${(!t.intro&&!t.custom)?'<p class="sub">這間廟的介紹還在查證中,目前先暫缺。若您知道相關資料,歡迎提供指正。</p>':''}
    <button class="big red" data-act="checkin" data-id="${esc(id)}"><svg class="ic" aria-hidden="true"><use href="#i-camera"/></svg> 來這裡打卡</button>
    <a class="big line" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(t.name+' '+t.county+(t.addr||''))}"><svg class="ic" aria-hidden="true"><use href="#i-compass"/></svg> 用 Google 地圖導航</a>
    ${pos(t)?`<button class="big line" data-act="onmap" data-id="${esc(id)}"><svg class="ic" aria-hidden="true"><use href="#i-map"/></svg> 在地圖上看</button>`:''}
